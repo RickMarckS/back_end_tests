@@ -1,14 +1,10 @@
-import logging
 import requests
 from behave import given, when, then
-
-# Configura o logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from configs.settings import url_modify, logger
 
 @given('the client wants to delete an existing employee')
 def step_impl(context):
-    context.url = 'https://teste-back-end-79fd6-default-rtdb.firebaseio.com/-O4S5ESXuF2x7eXP7BC0.json' # Substituir por um ID real
+    context.url = url_modify # Substituir por um ID real
 
 
 @when('the client confirms the deletion of the employee')
