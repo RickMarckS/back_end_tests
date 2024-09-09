@@ -1,23 +1,17 @@
-import logging
 import requests
 from behave import given, when, then
+from configs.settings import logger, url_base, post_payload
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 @given('the client wants to register a new employee')
 def step_impl(context):
-    context.url = 'https://teste-back-end-79fd6-default-rtdb.firebaseio.com/.json'  # url de acesso básica
+    context.url = url_base  # url de acesso básica
 
 
 @when('the client fills out the form with the data')
 def step_impl(context):
-    context.payload = {
-        "Idade": 60,
-        "Nome": "Jennifer",
-        "Sobrenome": "Fernanda"
-    }  # Dados do novo funcionário que serão enviados no POST
+    context.payload = post_payload # Dados do novo funcionário que serão enviados no POST
 
 
 @then('the client submits the form and the employee is registered')
