@@ -1,12 +1,10 @@
-import logging
 import requests
 from behave import given, when, then
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from configs.settings import logger, url_base
 
 @given('the client wants to query the employee list')
 def step_impl(context):
-    context.url = 'https://teste-back-end-79fd6-default-rtdb.firebaseio.com/.json' #url base da API
+    context.url = url_base #url base da API
 
 
 @when('the client makes a query to the database')
