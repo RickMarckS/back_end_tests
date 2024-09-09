@@ -1,28 +1,19 @@
-import logging
+
 import requests
 from behave import given, when, then
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
-
-
-# Configura o logging
+from configs.settings import logger, url_modify, patch_payload
 
 
 @given('the client wants to update an existing employee')
 def step_impl(context):
     # URL do funcionário específico a ser atualizado (supondo que '-O4QeHU-576CybnpjTnk' seja o ID)
-    context.url = 'https://teste-back-end-79fd6-default-rtdb.firebaseio.com/-O5sO1SEBxnrEIiynWQL.json'  # Substituir por um ID real
+    context.url = url_modify  # Substituir por um ID real
 
 
 @when('the client fills out the form with the new data')
 def step_impl(context):
     # Dados que serão atualizados via PATCH
-    context.payload = {
-        "Idade": 30,
-        "Nome": "Anne",
-        "Sobrenome": "Frank"
-    }
+    context.payload = patch_payload
 
 
 @then('the client submits the form and the employee is updated')
